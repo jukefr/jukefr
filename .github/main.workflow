@@ -45,9 +45,9 @@ action "Clean Public (gh-pages)" {
 }
 
 action "Build" {
-  uses = "jukefr/actions/next@master"
+  uses = "jukefr/actions/node@master"
   needs = ["Clean Public (gh-pages)"]
-  args  = ["build && next export"]
+  args  = ["npm i && npm run build"]
 }
 
 action "Add CNAME" {
