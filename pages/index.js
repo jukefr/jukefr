@@ -90,7 +90,7 @@ const figure = ({ picture, caption, width = "100%", height = "100%" }) => (
   </figure>
 );
 
-const swiper = ({ projects, swipeAction }) => (
+const swiper = ({ projects, swipeAction, transition }) => (
   <section>
     <ul className={swipeAction}>
       {[projects[1], projects[2], projects[3]].map((value, index) => (
@@ -112,7 +112,7 @@ const swiper = ({ projects, swipeAction }) => (
       ul {
         list-style: none;
         margin: 0;
-        transition: all 0.3s ease-out;
+        transition: ${transition} 0.3s ease-out;
         padding: 0;
         display: grid;
         width: 300vw;
@@ -257,6 +257,7 @@ export default class extends Component {
       projects: handleProjects({ projects }),
       x: 0,
       y: 0,
+      transition: "all",
       swipeAction: ""
     };
     this.hideIntro = () => {
@@ -360,25 +361,29 @@ export default class extends Component {
       }
     };
 
-    this.handleSwiperTransition = () => {
+    this.handleSwiperTransition = async () => {
+      const delay = t => new Promise(resolve => setTimeout(resolve, t));
+      // much async such wow
+      await delay(400);
+      await this.setState(state => ({ ...state, transition: "none" }));
       const direction = this.state.swipeAction.replace("slide", "");
       switch (direction) {
         case "Right":
-          this.setState(state => ({ ...state, x: state.x + 1 }));
+          await this.setState(state => ({ ...state, x: state.x + 1 }));
           break;
         case "Left":
-          this.setState(state => ({ ...state, x: state.x - 1 }));
+          await this.setState(state => ({ ...state, x: state.x - 1 }));
           break;
         case "Up":
-          this.setState(state => ({ ...state, y: state.y - 1 }));
+          await this.setState(state => ({ ...state, y: state.y - 1 }));
           break;
         case "Down":
-          this.setState(state => ({ ...state, y: state.y + 1 }));
+          await this.setState(state => ({ ...state, y: state.y + 1 }));
           break;
         default:
           break;
       }
-      this.setState(state => ({
+      await this.setState(state => ({
         ...state,
         swipeAction: "",
         projects: handleProjects({
@@ -387,6 +392,8 @@ export default class extends Component {
           indexY: state.y
         })
       }));
+      await delay(100); // ser gut
+      await this.setState(state => ({ ...state, transition: "all" }));
     };
   }
 
