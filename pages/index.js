@@ -93,87 +93,13 @@ const figure = ({ picture, caption, width = "100%", height = "100%" }) => (
 const swiper = ({ projects, swipeAction, transition }) => (
   <section>
     <ul className={swipeAction}>
-      {[projects[1], projects[2], projects[3]].map((value, index) => (
-        <li className="project" key={index}>
-          {figure(value)}
-        </li>
-      ))}
-      {[projects[0], projects[4]].map((value, index) => (
-        <li className="projects" key={index + 3}>
-          {figure(value)}
-        </li>
+      {projects.map((value, index) => (
+        <li key={index}>{figure(value)}</li>
       ))}
     </ul>
     <style jsx>{`
       section {
         display: block;
-      }
-
-      ul {
-        list-style: none;
-        margin: 0;
-        transition: ${transition} 0.3s ease-out;
-        padding: 0;
-        display: grid;
-        width: 300vw;
-        height: 300vh;
-        z-index: 1;
-        position: fixed;
-        top: -100vh;
-        left: -100vw;
-        grid-template-columns: 100vw 100vw 100vw;
-        grid-template-rows: 100vh 100vh 100vh;
-      }
-
-      ul.slideLeft {
-        left: 0;
-      }
-
-      ul.slideUp {
-        top: 0;
-      }
-
-      ul.slideRight {
-        left: -200vw;
-      }
-
-      ul.slideDown {
-        top: -200vh;
-      }
-
-      li.project {
-        margin: 0;
-        padding: 0;
-        width: 100vw;
-        height: 100vh;
-        display: block;
-        grid-column: 2;
-        grid-row: 2;
-        background: blue;
-      }
-
-      li:nth-child(1) {
-        background: red;
-        grid-column: 1;
-      }
-
-      li:nth-child(3) {
-        background: green;
-        grid-column: 3;
-      }
-
-      li.projects {
-        grid-column: 2;
-      }
-
-      li:nth-child(4) {
-        background: black;
-        grid-row: 1;
-      }
-
-      li:nth-child(5) {
-        background: pink;
-        grid-row: 3;
       }
     `}</style>
   </section>
@@ -191,10 +117,20 @@ const handleProjects = ({ projects, indexY = 0, indexX = 0 }) => {
   const projectB = projects[indexYB] || null;
   const projectC = projects[indexYC] || null;
 
+  const indexXAA =
+    indexX -
+    Math.floor(indexX / projectA.pictures.length) * projectA.pictures.length;
+
   const indexXAB =
     indexX +
     1 -
     Math.floor((indexX + 1) / projectA.pictures.length) *
+      projectA.pictures.length;
+
+  const indexXAC =
+    indexX +
+    2 -
+    Math.floor((indexX + 2) / projectA.pictures.length) *
       projectA.pictures.length;
 
   const indexXBA =
@@ -213,23 +149,45 @@ const handleProjects = ({ projects, indexY = 0, indexX = 0 }) => {
     Math.floor((indexX + 2) / projectB.pictures.length) *
       projectB.pictures.length;
 
+  const indexXCA =
+    indexX -
+    Math.floor(indexX / projectC.pictures.length) * projectC.pictures.length;
+
   const indexXCB =
     indexX +
     1 -
     Math.floor((indexX + 1) / projectC.pictures.length) *
       projectC.pictures.length;
 
+  const indexXCC =
+    indexX +
+    2 -
+    Math.floor((indexX + 2) / projectC.pictures.length) *
+      projectC.pictures.length;
+
+  const pictureAA = projectA.pictures[indexXAA] || null;
   const pictureAB = projectA.pictures[indexXAB] || null;
+  const pictureAC = projectA.pictures[indexXAC] || null;
   const pictureBA = projectB.pictures[indexXBA] || null;
   const pictureBB = projectB.pictures[indexXBB] || null;
   const pictureBC = projectB.pictures[indexXBC] || null;
+  const pictureCA = projectC.pictures[indexXCA] || null;
   const pictureCB = projectC.pictures[indexXCB] || null;
+  const pictureCC = projectC.pictures[indexXCC] || null;
 
   return [
+    //{
+    //   caption: pictureAA.caption,
+    //  picure: `/static/${projectA.name}/${pictureAA.name}`
+    //},
     {
       caption: pictureAB.caption,
       picure: `/static/${projectA.name}/${pictureAB.name}`
     },
+    //{
+    //  caption: pictureAC.caption,
+    //  picure: `/static/${projectA.name}/${pictureAC.name}`
+    //},
     {
       caption: pictureBA.caption,
       picure: `/static/${projectB.name}/${pictureBA.name}`
@@ -242,10 +200,18 @@ const handleProjects = ({ projects, indexY = 0, indexX = 0 }) => {
       caption: pictureBC.caption,
       picure: `/static/${projectB.name}/${pictureBC.name}`
     },
+    //{
+    //  caption: pictureCA.caption,
+    //  picure: `/static/${projectC.name}/${pictureCA.name}`
+    //},
     {
       caption: pictureCB.caption,
       picure: `/static/${projectC.name}/${pictureCB.name}`
     }
+    //{
+    //  caption: pictureCC.caption,
+    //  picure: `/static/${projectC.name}/${pictureCC.name}`
+    //}
   ];
 };
 
@@ -363,7 +329,6 @@ export default class extends Component {
 
     this.handleSwiperTransition = async () => {
       const delay = t => new Promise(resolve => setTimeout(resolve, t));
-      // much async such wow
       await delay(400);
       await this.setState(state => ({ ...state, transition: "none" }));
       const direction = this.state.swipeAction.replace("slide", "");
@@ -399,7 +364,6 @@ export default class extends Component {
 
   componentDidMount() {
     if (localStorage.getItem("introHasPlayed") !== "true") {
-      // play intro
       this.setState(state => {
         return {
           ...state,
@@ -408,21 +372,28 @@ export default class extends Component {
       });
       localStorage.setItem("introHasPlayed", true);
     }
-    document.addEventListener("keydown", this.swipeKeyboard);
-    document.addEventListener("touchstart", this.handleTouchStart);
-    document.addEventListener("touchend", this.handleTouchEnd);
-    document.addEventListener("wheel", this.handleScroll);
-    document.addEventListener("click", this.handleClick);
-    document.addEventListener("contextmenu", this.handleClick);
+
+    if (isMobile) {
+      document.addEventListener("touchstart", this.handleTouchStart);
+      document.addEventListener("touchend", this.handleTouchEnd);
+    } else {
+      document.addEventListener("keydown", this.swipeKeyboard);
+      document.addEventListener("wheel", this.handleScroll);
+      document.addEventListener("click", this.handleClick);
+      document.addEventListener("contextmenu", this.handleClick);
+    }
   }
 
   componentWillUnmount() {
-    document.removeEventListener("keydown", this.swipeKeyboard);
-    document.removeEventListener("touchstart", this.handleTouchStart);
-    document.removeEventListener("touchend", this.handleTouchEnd);
-    document.removeEventListener("wheel", this.handleScroll);
-    document.removeEventListener("click", this.handleClick);
-    document.removeEventListener("contextmenu", this.handleClick);
+    if (isMobile) {
+      document.removeEventListener("touchstart", this.handleTouchStart);
+      document.removeEventListener("touchend", this.handleTouchEnd);
+    } else {
+      document.removeEventListener("keydown", this.swipeKeyboard);
+      document.removeEventListener("wheel", this.handleScroll);
+      document.removeEventListener("click", this.handleClick);
+      document.removeEventListener("contextmenu", this.handleClick);
+    }
   }
 
   render() {
@@ -477,6 +448,73 @@ export default class extends Component {
             background: none;
             top: 0;
             left: 0;
+          }
+
+          ul {
+            height: ${isMobile === false ? "240vh" : "300vh"};
+            width: ${isMobile === false ? "240vw" : "300vw"};
+            list-style: none;
+            margin: 0;
+            transition: ${this.state.transition} 0.2s ease-out;
+            padding: 0;
+            display: grid;
+            z-index: 1;
+            position: fixed;
+            top: ${isMobile === false ? "-70vh" : "-100vh"};
+            left: ${isMobile === false ? "-70vw" : "-100vw"};
+            grid-template-columns: ${isMobile === false
+              ? "80vw 80vw 80vw"
+              : "100vw 100vw 100vw"};
+            grid-template-rows: ${isMobile === false
+              ? "80vh 80vh 80vh"
+              : "100vh 100vh 100vh"};
+          }
+
+          ul.slideLeft {
+            left: ${isMobile === false ? "10vw" : "0"};
+          }
+
+          ul.slideUp {
+            top: ${isMobile === false ? "10vh" : "0"};
+          }
+
+          ul.slideRight {
+            left: ${isMobile === false ? "-150vw" : "-200vw"};
+          }
+
+          ul.slideDown {
+            top: ${isMobile === false ? "-150vh" : "-200vh"};
+          }
+
+          li {
+            margin: ${isMobile === false ? "2.5vh 2.5vw" : "0"};
+            height: ${isMobile === false ? "75vh" : "100vh"};
+            width: ${isMobile === false ? "75vw" : "100vw"};
+            background: blue;
+            padding: 0;
+            display: block;
+          }
+
+          li:nth-child(1) {
+            grid-column: 2;
+            grid-row: 1;
+          }
+          li:nth-child(2) {
+            grid-column: 1;
+            grid-row: 2;
+          }
+          li:nth-child(3) {
+            grid-column: 2;
+            grid-row: 2;
+          }
+
+          li:nth-child(4) {
+            grid-column: 3;
+            grid-row: 2;
+          }
+          li:nth-child(5) {
+            grid-column: 2;
+            grid-row: 3;
           }
         `}</style>
       </div>
