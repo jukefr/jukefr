@@ -21,6 +21,7 @@ export default class MyApp extends App {
       <Container>
         {/* Here we call NextSeo and pass our default configuration to it  */}
         <NextSeo config={SEO} />
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <Component {...pageProps} />
       </Container>
     );
