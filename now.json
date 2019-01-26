@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "name": "juke",
+    "name": "jukefr",
     "alias": "juke.fr",
     "builds": [
         { "src": "next.config.js", "use": "@now/next" }
