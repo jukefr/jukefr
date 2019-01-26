@@ -27,7 +27,7 @@ const intro = ({ isMobile }) => {
         width="auto"
         height="75px"
       />
-      <h3>{isMobile ? "Tap" : "Click"} anywhere to get started.</h3>
+      <h3>{isMobile ? "Tap" : "Click"} anywhere to get started. {isMobile ? "" : "(or press Space)"}</h3>
 
       {!isMobile && (
         <img src="/static/icons/arrows.svg" width="auto" height="75px" />
@@ -279,6 +279,10 @@ export default class extends Component {
           event.preventDefault();
           direction = "Down";
           break;
+        case 32:
+          event.preventDefault();
+          this.hideIntro();
+          break;
         default:
           break;
       }
@@ -444,7 +448,7 @@ export default class extends Component {
       <div>
         {this.state.projects.length !== 0 && swiper({ ...this.state })}
 
-        {this.state.introHide && (
+        {!this.state.introHide && (
           <section className="introSection">
             <section
               className="introOverlay"
