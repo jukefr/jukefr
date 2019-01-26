@@ -47,19 +47,19 @@ class Page extends Component {
       switch (event.keyCode) {
         case 38:
           event.preventDefault();
-          this.props.dispatch({ type: "SWIPE_UP" });
+          this.handleSwiperTransition("Up");
           break;
         case 39:
           event.preventDefault();
-          this.props.dispatch({ type: "SWIPE_RIGHT" });
+          this.handleSwiperTransition("Right");
           break;
         case 37:
           event.preventDefault();
-          this.props.dispatch({ type: "SWIPE_LEFT" });
+          this.handleSwiperTransition("Left");
           break;
         case 40:
           event.preventDefault();
-          this.props.dispatch({ type: "SWIPE_DOWN" });
+          this.handleSwiperTransition("Down");
           break;
         case 32:
           event.preventDefault();
@@ -68,7 +68,6 @@ class Page extends Component {
         default:
           break;
       }
-      this.handleSwiperTransition();
     };
 
     this.handleTouchStart = event => {
@@ -106,19 +105,15 @@ class Page extends Component {
 
       if (x > y) {
         if (xDirection === 1) {
-          this.props.dispatch({ type: "SWIPE_LEFT" });
-          this.handleSwiperTransition();
+          this.handleSwiperTransition("Left");
         } else {
-          this.props.dispatch({ type: "SWIPE_RIGHT" });
-          this.handleSwiperTransition();
+          this.handleSwiperTransition("Right");
         }
       } else {
         if (yDirection === 1) {
-          this.props.dispatch({ type: "SWIPE_UP" });
-          this.handleSwiperTransition();
+          this.handleSwiperTransition("Up");
         } else {
-          this.props.dispatch({ type: "SWIPE_DOWN" });
-          this.handleSwiperTransition();
+          this.handleSwiperTransition("Down");
         }
       }
     };
@@ -126,47 +121,56 @@ class Page extends Component {
     this.handleScroll = event => {
       event.preventDefault();
       if (event.deltaY > 0) {
-        this.props.dispatch({ type: "SWIPE_UP" });
-        this.handleSwiperTransition();
+        this.handleSwiperTransition("Up");
       } else {
-        this.props.dispatch({ type: "SWIPE_DOWN" });
-        this.handleSwiperTransition();
+        this.handleSwiperTransition("Down");
       }
     };
 
     this.handleClick = event => {
       event.preventDefault();
       if (event.button === 0) {
-        this.props.dispatch({ type: "SWIPE_LEFT" });
-        this.handleSwiperTransition();
+        this.handleSwiperTransition("Left");
       } else {
-        this.props.dispatch({ type: "SWIPE_RIGHT" });
-        this.handleSwiperTransition();
+        this.handleSwiperTransition("Right");
       }
     };
 
-    this.handleSwiperTransition = async () => {
+    this.handleSwiperTransition = async direction => {
       const delay = t => new Promise(resolve => setTimeout(resolve, t));
-      await delay(400);
-      await this.props.dispatch({ type: "TRANSITION_OFF" });
-      const direction = this.props.swipeAction.replace("slide", "");
+      if (this.props.lastScroll) {
+        const currentDate = +new Date();
+        if (currentDate - this.props.lastScroll < 300) {
+          return;
+        }
+      }
+
+      await this.props.dispatch({ type: "SET_SCROLL" });
+
+      await this.props.dispatch({ type: "TRANSITION_ON" });
       switch (direction) {
         case "Right":
+          await this.props.dispatch({ type: "SWIPE_RIGHT" });
           await this.props.dispatch({ type: "HORIZONTAL_INCREMENT" });
           break;
         case "Left":
+          await this.props.dispatch({ type: "SWIPE_LEFT" });
           await this.props.dispatch({ type: "HORIZONTAL_DECREMENT" });
           break;
         case "Up":
+          await this.props.dispatch({ type: "SWIPE_UP" });
           await this.props.dispatch({ type: "VERTICAL_DECREMENT" });
           break;
         case "Down":
+          await this.props.dispatch({ type: "SWIPE_DOWN" });
           await this.props.dispatch({ type: "VERTICAL_INCREMENT" });
           break;
         default:
           break;
       }
-      await this.props.dispatch({ type: "SWIPE_RESET" });
+      await delay(250);
+      await this.props.dispatch({ type: "TRANSITION_OFF" });
+      this.props.dispatch({ type: "SWIPE_RESET" });
       await this.props.dispatch({
         type: "SET_PROJECTS",
         payload: projectBatch({
@@ -176,8 +180,6 @@ class Page extends Component {
           isMobile: this.props.isMobile
         })
       });
-      await delay(100);
-      await this.props.dispatch({ type: "TRANSITION_ON" });
     };
 
     this.checkMobile = () => {
@@ -237,7 +239,10 @@ class Page extends Component {
   render() {
     return (
       <div>
-        {this.props.projects.length !== 0 && swiper({ ...this.props })}
+        {this.props.swipeAction &&
+          swiper({ ...this.props, className: "effects" })}
+        {this.props.projects.length !== 0 &&
+          swiper({ ...this.props, className: "main" })}
 
         {!this.props.introHide && (
           <section className="introSection">
@@ -311,20 +316,51 @@ class Page extends Component {
               : "100vh 100vh 100vh"};
           }
 
-          ul.slideLeft {
+          ul.slideLeft.main {
             left: ${this.props.isMobile === false ? "10vw" : "0"};
           }
 
-          ul.slideUp {
+          ul.slideUp.main {
             top: ${this.props.isMobile === false ? "10vh" : "0"};
           }
 
-          ul.slideRight {
+          ul.slideRight.main {
             left: ${this.props.isMobile === false ? "-150vw" : "-200vw"};
           }
 
-          ul.slideDown {
+          ul.slideDown.main {
             top: ${this.props.isMobile === false ? "-150vh" : "-200vh"};
+          }
+
+          ul.slideDown.main li:nth-child(2),
+          ul.slideDown.main li:nth-child(4),
+          ul.slideUp.main li:nth-child(2),
+          ul.slideUp.main li:nth-child(4) {
+            display: none;
+          }
+          ul.slideLeft.main li:nth-child(1),
+          ul.slideLeft.main li:nth-child(5),
+          ul.slideRight.main li:nth-child(1),
+          ul.slideRight.main li:nth-child(5) {
+            display: none;
+          }
+
+          ul.effects li:nth-child(3) {
+            display: none;
+          }
+
+          ul.effects.slideDown li:nth-child(1),
+          ul.effects.slideDown li:nth-child(5),
+          ul.effects.slideUp li:nth-child(1),
+          ul.effects.slideUp li:nth-child(5) {
+            display: none;
+          }
+
+          ul.effects.slideLeft li:nth-child(2),
+          ul.effects.slideLeft li:nth-child(4),
+          ul.effects.slideRight li:nth-child(2),
+          ul.effects.slideRight li:nth-child(4) {
+            display: none;
           }
 
           li {

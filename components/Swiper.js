@@ -1,8 +1,8 @@
 import figure from "./figure"
 
-export default ({ projects, swipeAction, transition }) => (
+export default ({ projects, swipeAction, transition, className }) => (
   <section>
-    <ul className={swipeAction}>
+    <ul className={className + ' ' + swipeAction}>
       {projects.map((value, index) => (
         <li key={index}>{figure(value)}</li>
       ))}

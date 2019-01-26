@@ -18,6 +18,8 @@ const reducer = (
   action
 ) => {
   switch (action.type) {
+    case "SET_SCROLL":
+      return { ...state, lastScroll: +new Date()};
     case "SET_PROJECTS":
       return { ...state, projects: action.payload };
     case "IS_MOBILE":
