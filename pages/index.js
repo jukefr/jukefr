@@ -1,5 +1,10 @@
 import { Component } from "react";
 
+import intro from "../components/Intro"
+import swiper from "../components/Swiper"
+
+import projectBatch from "../utils/project-batch"
+
 const projects = [
   {
     name: "fyle",
@@ -30,253 +35,6 @@ const projects = [
     ]
   }
 ];
-
-const intro = ({ isMobile }) => {
-  return (
-    <section>
-      <h1>juke.fr</h1>
-      <h3 className="welcome">Welcome to my portfolio.</h3>
-      <img
-        src={isMobile ? "/static/icons/swipev.svg" : "/static/icons/mousev.svg"}
-        width="auto"
-        height="75px"
-      />
-      <h3>{isMobile ? "Swipe" : "Scroll"} up and down to change project.</h3>
-      <img
-        src={isMobile ? "/static/icons/swipeh.svg" : "/static/icons/mouseh.svg"}
-        width="auto"
-        height="75px"
-      />
-      <h3>
-        {isMobile ? "Swipe left and right" : "Left Click and Right Click"} to
-        learn more about a project.
-      </h3>
-      <img
-        src={isMobile ? "/static/icons/tap.svg" : "/static/icons/click.svg"}
-        width="auto"
-        height="75px"
-      />
-      <h3>
-        {isMobile ? "Tap" : "Click"} anywhere to get started.{" "}
-        {isMobile ? "" : "(or press Space)"}
-      </h3>
-
-      {!isMobile && (
-        <img src="/static/icons/arrows.svg" width="auto" height="75px" />
-      )}
-      {!isMobile && <h3>You can also use your keyboard arrow keys.</h3>}
-      <style jsx>{`
-        * {
-          margin: 0;
-          padding: 0;
-        }
-
-        h1 {
-          border: 1px solid black;
-          font-size: 21px;
-          text-transform: uppercase;
-          padding: 10px;
-          margin-bottom: 10px;
-        }
-
-        h3 {
-          margin: 0 20px;
-          font-size: 18px;
-          text-align: center;
-          margin-bottom: 30px;
-        }
-
-        h3.welcome {
-          margin-bottom: 40px;
-        }
-
-        section {
-          width: 100vw;
-          height: 100vh;
-          margin: 0;
-          padding: 0;
-          position: fixed;
-          top: 0;
-          left: 0;
-          background: rgba(255, 255, 255, 0.9);
-          z-index: 5;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-      `}</style>
-    </section>
-  );
-};
-
-const figure = ({ picture, caption, width = "100%", height = "100%" }) => (
-  <figure>
-    <img src={picture} />
-    <figcaption>
-      <h3>{caption}</h3>
-    </figcaption>
-    <style jsx>{`
-      figure {
-        width: ${width};
-        height: ${height};
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-      }
-
-      img {
-        width: 100%;
-        height: 92%;
-        margin: 0;
-        padding: 0;
-      }
-
-      figcaption {
-        width: 100%;
-        height: 8%;
-        margin: 0;
-        padding: 0;
-      }
-    `}</style>
-  </figure>
-);
-
-const swiper = ({ projects, swipeAction, transition }) => (
-  <section>
-    <ul className={swipeAction}>
-      {projects.map((value, index) => (
-        <li key={index}>{figure(value)}</li>
-      ))}
-    </ul>
-    <style jsx>{`
-      section {
-        display: block;
-      }
-    `}</style>
-  </section>
-);
-
-const handleProjects = ({ projects, indexY = 0, indexX = 0, isMobile }) => {
-  const indexYA =
-    indexY - Math.floor(indexY / projects.length) * projects.length;
-  const indexYB =
-    1 + indexY - Math.floor((indexY + 1) / projects.length) * projects.length;
-  const indexYC =
-    2 + indexY - Math.floor((indexY + 2) / projects.length) * projects.length;
-
-  const projectA = projects[indexYA] || null;
-  const projectB = projects[indexYB] || null;
-  const projectC = projects[indexYC] || null;
-
-  const indexXAA =
-    indexX -
-    Math.floor(indexX / projectA.pictures.length) * projectA.pictures.length;
-
-  const indexXAB =
-    indexX +
-    1 -
-    Math.floor((indexX + 1) / projectA.pictures.length) *
-      projectA.pictures.length;
-
-  const indexXAC =
-    indexX +
-    2 -
-    Math.floor((indexX + 2) / projectA.pictures.length) *
-      projectA.pictures.length;
-
-  const indexXBA =
-    indexX -
-    Math.floor(indexX / projectB.pictures.length) * projectB.pictures.length;
-
-  const indexXBB =
-    indexX +
-    1 -
-    Math.floor((indexX + 1) / projectB.pictures.length) *
-      projectB.pictures.length;
-
-  const indexXBC =
-    indexX +
-    2 -
-    Math.floor((indexX + 2) / projectB.pictures.length) *
-      projectB.pictures.length;
-
-  const indexXCA =
-    indexX -
-    Math.floor(indexX / projectC.pictures.length) * projectC.pictures.length;
-
-  const indexXCB =
-    indexX +
-    1 -
-    Math.floor((indexX + 1) / projectC.pictures.length) *
-      projectC.pictures.length;
-
-  const indexXCC =
-    indexX +
-    2 -
-    Math.floor((indexX + 2) / projectC.pictures.length) *
-      projectC.pictures.length;
-
-  const pictureAA = projectA.pictures[indexXAA] || null;
-  const pictureAB = projectA.pictures[indexXAB] || null;
-  const pictureAC = projectA.pictures[indexXAC] || null;
-  const pictureBA = projectB.pictures[indexXBA] || null;
-  const pictureBB = projectB.pictures[indexXBB] || null;
-  const pictureBC = projectB.pictures[indexXBC] || null;
-  const pictureCA = projectC.pictures[indexXCA] || null;
-  const pictureCB = projectC.pictures[indexXCB] || null;
-  const pictureCC = projectC.pictures[indexXCC] || null;
-
-  return [
-    //{
-    //   caption: pictureAA.caption,
-    //  picture: `/static/${projectA.name}/${pictureAA.name}`
-    //},
-    {
-      caption: pictureAB.caption,
-      picture: `/static/${projectA.name}/${
-        isMobile === true ? pictureAB.name : "desktop-" + pictureAB.name
-      }`
-    },
-    //{
-    //  caption: pictureAC.caption,
-    //  picture: `/static/${projectA.name}/${pictureAC.name}`
-    //},
-    {
-      caption: pictureBA.caption,
-      picture: `/static/${projectB.name}/${
-        isMobile === true ? pictureBA.name : "desktop-" + pictureBA.name
-      }`
-    },
-    {
-      caption: pictureBB.caption,
-      picture: `/static/${projectB.name}/${
-        isMobile === true ? pictureBB.name : "desktop-" + pictureBB.name
-      }`
-    },
-    {
-      caption: pictureBC.caption,
-      picture: `/static/${projectB.name}/${
-        isMobile === true ? pictureBC.name : "desktop-" + pictureBC.name
-      }`
-    },
-    //{
-    //  caption: pictureCA.caption,
-    //  picture: `/static/${projectC.name}/${pictureCA.name}`
-    //},
-    {
-      caption: pictureCB.caption,
-      picture: `/static/${projectC.name}/${
-        isMobile === true ? pictureCB.name : "desktop-" + pictureCB.name
-      }`
-    }
-    //{
-    //  caption: pictureCC.caption,
-    //  picure: `/static/${projectC.name}/${pictureCC.name}`
-    //}
-  ];
-};
 
 export default class extends Component {
   constructor(props) {
@@ -424,7 +182,7 @@ export default class extends Component {
       await this.setState(state => ({
         ...state,
         swipeAction: "",
-        projects: handleProjects({
+        projects: projectBatch({
           projects,
           indexX: state.x,
           indexY: state.y,
@@ -464,7 +222,7 @@ export default class extends Component {
     }
     this.setState(state => ({
       ...state,
-      projects: handleProjects({ projects, isMobile: this.checkMobile() }),
+      projects: projectBatch({ projects, isMobile: this.checkMobile() }),
       isMobile: this.checkMobile()
     }));
 
