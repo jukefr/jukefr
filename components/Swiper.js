@@ -1,4 +1,4 @@
-import figure from "./Figure"
+import figure from "./figure"
 
 export default ({ projects, swipeAction, transition }) => (
   <section>

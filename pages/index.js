@@ -1,9 +1,10 @@
 import { Component } from "react";
+import { connect } from "react-redux";
 
-import intro from "../components/Intro"
-import swiper from "../components/Swiper"
+import intro from "../components/intro";
+import swiper from "../components/swiper";
 
-import projectBatch from "../utils/project-batch"
+import projectBatch from "../utils/project-batch";
 
 const projects = [
   {
@@ -36,38 +37,29 @@ const projects = [
   }
 ];
 
-export default class extends Component {
+class Page extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      introHide: true,
-      x: 0,
-      y: 0,
-      projects: [],
-      transition: "all",
-      swipeAction: ""
-    };
     this.hideIntro = () => {
-      this.setState(state => ({ ...state, introHide: true }));
+      this.props.dispatch({ type: "INTRO_HIDE" });
     };
     this.swipeKeyboard = event => {
-      let direction = "";
       switch (event.keyCode) {
         case 38:
           event.preventDefault();
-          direction = "Up";
+          this.props.dispatch({ type: "SWIPE_UP" });
           break;
         case 39:
           event.preventDefault();
-          direction = "Right";
+          this.props.dispatch({ type: "SWIPE_RIGHT" });
           break;
         case 37:
           event.preventDefault();
-          direction = "Left";
+          this.props.dispatch({ type: "SWIPE_LEFT" });
           break;
         case 40:
           event.preventDefault();
-          direction = "Down";
+          this.props.dispatch({ type: "SWIPE_DOWN" });
           break;
         case 32:
           event.preventDefault();
@@ -76,7 +68,6 @@ export default class extends Component {
         default:
           break;
       }
-      this.setState(state => ({ ...state, swipeAction: `slide${direction}` }));
       this.handleSwiperTransition();
     };
 
@@ -115,22 +106,18 @@ export default class extends Component {
 
       if (x > y) {
         if (xDirection === 1) {
-          // Left
-          this.setState(state => ({ ...state, swipeAction: `slideLeft` }));
+          this.props.dispatch({ type: "SWIPE_LEFT" });
           this.handleSwiperTransition();
         } else {
-          // Right
-          this.setState(state => ({ ...state, swipeAction: `slideRight` }));
+          this.props.dispatch({ type: "SWIPE_RIGHT" });
           this.handleSwiperTransition();
         }
       } else {
         if (yDirection === 1) {
-          // Up
-          this.setState(state => ({ ...state, swipeAction: `slideUp` }));
+          this.props.dispatch({ type: "SWIPE_UP" });
           this.handleSwiperTransition();
         } else {
-          // Down
-          this.setState(state => ({ ...state, swipeAction: `slideDown` }));
+          this.props.dispatch({ type: "SWIPE_DOWN" });
           this.handleSwiperTransition();
         }
       }
@@ -139,10 +126,10 @@ export default class extends Component {
     this.handleScroll = event => {
       event.preventDefault();
       if (event.deltaY > 0) {
-        this.setState(state => ({ ...state, swipeAction: `slideUp` }));
+        this.props.dispatch({ type: "SWIPE_UP" });
         this.handleSwiperTransition();
       } else {
-        this.setState(state => ({ ...state, swipeAction: `slideDown` }));
+        this.props.dispatch({ type: "SWIPE_DOWN" });
         this.handleSwiperTransition();
       }
     };
@@ -150,10 +137,10 @@ export default class extends Component {
     this.handleClick = event => {
       event.preventDefault();
       if (event.button === 0) {
-        this.setState(state => ({ ...state, swipeAction: `slideLeft` }));
+        this.props.dispatch({ type: "SWIPE_LEFT" });
         this.handleSwiperTransition();
       } else {
-        this.setState(state => ({ ...state, swipeAction: `slideRight` }));
+        this.props.dispatch({ type: "SWIPE_RIGHT" });
         this.handleSwiperTransition();
       }
     };
@@ -161,36 +148,36 @@ export default class extends Component {
     this.handleSwiperTransition = async () => {
       const delay = t => new Promise(resolve => setTimeout(resolve, t));
       await delay(400);
-      await this.setState(state => ({ ...state, transition: "none" }));
-      const direction = this.state.swipeAction.replace("slide", "");
+      await this.props.dispatch({ type: "TRANSITION_OFF" });
+      const direction = this.props.swipeAction.replace("slide", "");
       switch (direction) {
         case "Right":
-          await this.setState(state => ({ ...state, x: state.x + 1 }));
+          await this.props.dispatch({ type: "HORIZONTAL_INCREMENT" });
           break;
         case "Left":
-          await this.setState(state => ({ ...state, x: state.x - 1 }));
+          await this.props.dispatch({ type: "HORIZONTAL_DRECREMENT" });
           break;
         case "Up":
-          await this.setState(state => ({ ...state, y: state.y - 1 }));
+          await this.props.dispatch({ type: "VERTICAL_DECREMENT" });
           break;
         case "Down":
-          await this.setState(state => ({ ...state, y: state.y + 1 }));
+          await this.props.dispatch({ type: "VERTICAL_INCREMENT" });
           break;
         default:
           break;
       }
-      await this.setState(state => ({
-        ...state,
-        swipeAction: "",
-        projects: projectBatch({
+      await this.props.dispatch({ type: "SWIPE_RESET" });
+      await this.props.dispatch({
+        type: "SET_PROJECTS",
+        payload: projectBatch({
           projects,
-          indexX: state.x,
-          indexY: state.y,
-          isMobile: this.checkMobile()
+          indexX: this.props.x,
+          indexY: this.props.y,
+          isMobile: this.props.isMobile
         })
-      }));
-      await delay(100); // ser gut
-      await this.setState(state => ({ ...state, transition: "all" }));
+      });
+      await delay(100);
+      await this.props.dispatch({ type: "TRANSITION_ON" });
     };
 
     this.checkMobile = () => {
@@ -211,20 +198,18 @@ export default class extends Component {
   }
 
   componentDidMount() {
+    const store = this.props;
     if (localStorage.getItem("introHasPlayed") !== "true") {
-      this.setState(state => {
-        return {
-          ...state,
-          introHide: false
-        };
-      });
+      store.dispatch({ type: "INTRO_HIDE" });
       localStorage.setItem("introHasPlayed", true);
     }
-    this.setState(state => ({
-      ...state,
-      projects: projectBatch({ projects, isMobile: this.checkMobile() }),
-      isMobile: this.checkMobile()
-    }));
+    store.dispatch({
+      type: "SET_PROJECTS",
+      payload: projectBatch({ projects, isMobile: this.checkMobile() })
+    });
+    this.checkMobile()
+      ? store.dispatch({ type: "IS_MOBILE" })
+      : store.dispatch({ type: "IS_DESKTOP" });
 
     if (this.checkMobile()) {
       document.addEventListener("touchstart", this.handleTouchStart);
@@ -238,7 +223,7 @@ export default class extends Component {
   }
 
   componentWillUnmount() {
-    if (this.state.isMobile) {
+    if (this.props.isMobile) {
       document.removeEventListener("touchstart", this.handleTouchStart);
       document.removeEventListener("touchend", this.handleTouchEnd);
     } else {
@@ -252,16 +237,16 @@ export default class extends Component {
   render() {
     return (
       <div>
-        {this.state.projects.length !== 0 && swiper({ ...this.state })}
+        {this.props.projects.length !== 0 && swiper({ ...this.props })}
 
-        {!this.state.introHide && (
+        {!this.props.introHide && (
           <section className="introSection">
             <section
               className="introOverlay"
               onTouchStart={this.hideIntro}
               onClick={this.hideIntro}
             />
-            {intro({ ...this.state })}
+            {intro({ ...this.props })}
           </section>
         )}
         <style global jsx>{`
@@ -307,49 +292,49 @@ export default class extends Component {
           }
 
           ul {
-            height: ${this.state.isMobile === false ? "240vh" : "300vh"};
-            width: ${this.state.isMobile === false ? "240vw" : "300vw"};
+            height: ${this.props.isMobile === false ? "240vh" : "300vh"};
+            width: ${this.props.isMobile === false ? "240vw" : "300vw"};
             list-style: none;
             margin: 0;
-            transition: ${this.state.transition} 0.2s ease-out;
+            transition: ${this.props.transition} 0.2s ease-out;
             padding: 0;
             display: grid;
             z-index: 1;
             position: fixed;
-            top: ${this.state.isMobile === false ? "-70vh" : "-100vh"};
-            left: ${this.state.isMobile === false ? "-70vw" : "-100vw"};
-            grid-template-columns: ${this.state.isMobile === false
+            top: ${this.props.isMobile === false ? "-70vh" : "-100vh"};
+            left: ${this.props.isMobile === false ? "-70vw" : "-100vw"};
+            grid-template-columns: ${this.props.isMobile === false
               ? "80vw 80vw 80vw"
               : "100vw 100vw 100vw"};
-            grid-template-rows: ${this.state.isMobile === false
+            grid-template-rows: ${this.props.isMobile === false
               ? "80vh 80vh 80vh"
               : "100vh 100vh 100vh"};
           }
 
           ul.slideLeft {
-            left: ${this.state.isMobile === false ? "10vw" : "0"};
+            left: ${this.props.isMobile === false ? "10vw" : "0"};
           }
 
           ul.slideUp {
-            top: ${this.state.isMobile === false ? "10vh" : "0"};
+            top: ${this.props.isMobile === false ? "10vh" : "0"};
           }
 
           ul.slideRight {
-            left: ${this.state.isMobile === false ? "-150vw" : "-200vw"};
+            left: ${this.props.isMobile === false ? "-150vw" : "-200vw"};
           }
 
           ul.slideDown {
-            top: ${this.state.isMobile === false ? "-150vh" : "-200vh"};
+            top: ${this.props.isMobile === false ? "-150vh" : "-200vh"};
           }
 
           li {
-            margin: ${this.state.isMobile === false ? "2.5vh 2.5vw" : "0"};
-            height: ${this.state.isMobile === false ? "75vh" : "100vh"};
-            width: ${this.state.isMobile === false ? "75vw" : "100vw"};
+            margin: ${this.props.isMobile === false ? "2.5vh 2.5vw" : "0"};
+            height: ${this.props.isMobile === false ? "75vh" : "100vh"};
+            width: ${this.props.isMobile === false ? "75vw" : "100vw"};
             background: #f8f8f2;
             padding: 0;
             display: block;
-            border-radius: ${this.state.isMobile === false ? "10px" : "0"};
+            border-radius: ${this.props.isMobile === false ? "10px" : "0"};
             overflow: hidden;
           }
 
@@ -393,3 +378,5 @@ export default class extends Component {
     );
   }
 }
+
+export default connect(state => state)(Page);
