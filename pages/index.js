@@ -155,7 +155,7 @@ class Page extends Component {
           await this.props.dispatch({ type: "HORIZONTAL_INCREMENT" });
           break;
         case "Left":
-          await this.props.dispatch({ type: "HORIZONTAL_DRECREMENT" });
+          await this.props.dispatch({ type: "HORIZONTAL_DECREMENT" });
           break;
         case "Up":
           await this.props.dispatch({ type: "VERTICAL_DECREMENT" });
