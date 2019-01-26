@@ -1,8 +1,8 @@
 import { Component } from "react";
 import { connect } from "react-redux";
 
-import intro from "../components/intro";
-import swiper from "../components/swiper";
+import intro from "../components/intro.js";
+import swiper from "../components/swiper.js";
 
 import projectBatch from "../utils/project-batch";
 
