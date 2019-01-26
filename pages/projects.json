@@ -2,24 +2,13 @@
   {
     "name": "fyle",
     "pictures": [
-      { "name": "test.png", "caption": "fyle" },
-      { "name": "test1.png", "caption": "fyle1" },
-      { "name": "test2.png", "caption": "fyle2" }
-    ]
+      { "name": "code.png", "caption": "Code" },
+      { "name": "browser.png", "caption": "Browser" }
+       ]
   },
   { "name": "nodend", 
     "pictures": [
-      { "name": "test.png", "caption": "nodend" },
-      { "name": "test1.png", "caption": "nodend1" },
-      { "name": "test2.png", "caption": "nodend2" }
-    ]
-  },
-
-  { "name": "doowap", 
-    "pictures": [
-      { "name": "test.png", "caption": "demo" },
-      { "name": "test1.png", "caption": "demo1" },
-      { "name": "test2.png", "caption": "demo2" }
+      { "name": "browser.png", "caption": "Browser" }
     ]
   }
-]
+  ]
