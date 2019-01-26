@@ -11,6 +11,6 @@ action "isMaster" {
 action "Deploy" {
   uses = "jukefr/actions/node@master"
   needs = ["isMaster"]
-  args  = ["npm i -g --unsafe-perm now && now"]
+  args  = ["npm i -g --unsafe-perm now && now --token=$NOW_TOKEN"]
   secrets = ["NOW_TOKEN"]
 }
