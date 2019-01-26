@@ -202,7 +202,7 @@ class Page extends Component {
   componentDidMount() {
     const store = this.props;
     if (localStorage.getItem("introHasPlayed") !== "true") {
-      store.dispatch({ type: "INTRO_HIDE" });
+      store.dispatch({ type: "INTRO_SHOW" });
       localStorage.setItem("introHasPlayed", true);
     }
     store.dispatch({
