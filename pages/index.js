@@ -1,4 +1,3 @@
-import { isMobile } from "react-device-detect";
 import { Component } from "react";
 import projects from "./projects.json";
 
@@ -27,7 +26,10 @@ const intro = ({ isMobile }) => {
         width="auto"
         height="75px"
       />
-      <h3>{isMobile ? "Tap" : "Click"} anywhere to get started. {isMobile ? "" : "(or press Space)"}</h3>
+      <h3>
+        {isMobile ? "Tap" : "Click"} anywhere to get started.{" "}
+        {isMobile ? "" : "(or press Space)"}
+      </h3>
 
       {!isMobile && (
         <img src="/static/icons/arrows.svg" width="auto" height="75px" />
@@ -55,7 +57,7 @@ const intro = ({ isMobile }) => {
         }
 
         h3.welcome {
-          margin-bottom: 40px;  
+          margin-bottom: 40px;
         }
 
         section {
@@ -66,7 +68,7 @@ const intro = ({ isMobile }) => {
           position: fixed;
           top: 0;
           left: 0;
-          background: rgba(255, 255, 255, 0.90);
+          background: rgba(255, 255, 255, 0.9);
           z-index: 5;
           display: flex;
           flex-direction: column;
@@ -396,11 +398,27 @@ export default class extends Component {
           projects,
           indexX: state.x,
           indexY: state.y,
-          isMobile
+          isMobile: this.checkMobile()
         })
       }));
       await delay(100); // ser gut
       await this.setState(state => ({ ...state, transition: "all" }));
+    };
+
+    this.checkMobile = () => {
+      if (
+        navigator.userAgent.match(/Android/i) ||
+        navigator.userAgent.match(/webOS/i) ||
+        navigator.userAgent.match(/iPhone/i) ||
+        navigator.userAgent.match(/iPad/i) ||
+        navigator.userAgent.match(/iPod/i) ||
+        navigator.userAgent.match(/BlackBerry/i) ||
+        navigator.userAgent.match(/Windows Phone/i)
+      ) {
+        return true;
+      } else {
+        return false;
+      }
     };
   }
 
@@ -416,11 +434,11 @@ export default class extends Component {
     }
     this.setState(state => ({
       ...state,
-      projects: handleProjects({ projects, isMobile }),
-      isMobile
+      projects: handleProjects({ projects, isMobile: this.checkMobile() }),
+      isMobile: this.checkMobile()
     }));
 
-    if (isMobile) {
+    if (this.checkMobile()) {
       document.addEventListener("touchstart", this.handleTouchStart);
       document.addEventListener("touchend", this.handleTouchEnd);
     } else {
