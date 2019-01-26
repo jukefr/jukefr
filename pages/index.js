@@ -1,5 +1,35 @@
 import { Component } from "react";
-import projects from "./projects.json";
+
+const projects = [
+  {
+    name: "fyle",
+    pictures: [
+      { name: "code.png", caption: "fyle - web asset processing utilities" },
+      {
+        name: "browser.png",
+        caption: "fyle - web asset processing utilities - documentation"
+      }
+    ]
+  },
+  {
+    name: "nodend",
+    pictures: [
+      {
+        name: "browser.png",
+        caption: "nodend.com - personnal blog about all kinds of tech stuff"
+      }
+    ]
+  },
+  {
+    name: "clize",
+    pictures: [
+      {
+        name: "code.png",
+        caption: "clize - run Javascript functions from the console"
+      }
+    ]
+  }
+];
 
 const intro = ({ isMobile }) => {
   return (
