@@ -1,6 +1,6 @@
-export default ({ picture, caption, width = "100%", height = "100%" }) => (
+export default ({ name, caption, width = "100%", height = "100%" }) => (
   <figure>
-    <img src={picture} />
+    <img src={name} />
     <figcaption>
       <h3>{caption}</h3>
     </figcaption>
