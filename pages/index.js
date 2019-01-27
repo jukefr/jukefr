@@ -1,14 +1,17 @@
 import { Component } from "react";
 import { connect } from "react-redux";
 
+import Page from "../layouts/default"
+
 import intro from "../components/Intro";
 import swiper from "../components/Swiper";
 
 import projectBatch from "../utils/project-batch";
+import isMobileUtility from "../utils/is-mobile"
 
 import projects from "../components/Projects.json";
 
-class Page extends Component {
+class Index extends Component {
   constructor(props) {
     super(props);
     this.hideIntro = () => {
@@ -153,21 +156,7 @@ class Page extends Component {
       });
     };
 
-    this.checkMobile = () => {
-      if (
-        navigator.userAgent.match(/Android/i) ||
-        navigator.userAgent.match(/webOS/i) ||
-        navigator.userAgent.match(/iPhone/i) ||
-        navigator.userAgent.match(/iPad/i) ||
-        navigator.userAgent.match(/iPod/i) ||
-        navigator.userAgent.match(/BlackBerry/i) ||
-        navigator.userAgent.match(/Windows Phone/i)
-      ) {
-        return true;
-      } else {
-        return false;
-      }
-    };
+    this.checkMobile = isMobileUtility;
   }
 
   componentDidMount() {
@@ -178,13 +167,10 @@ class Page extends Component {
     }
     store.dispatch({
       type: "SET_PROJECTS",
-      payload: projectBatch({ projects, isMobile: this.checkMobile() })
+      payload: projectBatch({ projects, isMobile: this.props.isMobile })
     });
-    this.checkMobile()
-      ? store.dispatch({ type: "IS_MOBILE" })
-      : store.dispatch({ type: "IS_DESKTOP" });
 
-    if (this.checkMobile()) {
+    if (this.props.isMobile) {
       document.addEventListener("touchstart", this.handleTouchStart);
       document.addEventListener("touchend", this.handleTouchEnd);
     } else {
@@ -209,7 +195,7 @@ class Page extends Component {
 
   render() {
     return (
-      <div>
+      <Page>
         {this.props.swipeAction &&
           swiper({ ...this.props, className: "effects" })}
         {this.props.projects.length !== 0 &&
@@ -243,7 +229,7 @@ class Page extends Component {
             left: 0;
             overflow: hidden;
             position: fixed;
-            z-index: 2;
+            z-index: 3;
             width: 100vw;
             height: 100vh;
           }
@@ -267,7 +253,8 @@ class Page extends Component {
             left: 0;
           }
 
-          ul {
+          ul.main,
+          ul.effects {
             height: ${this.props.isMobile === false ? "240vh" : "300vh"};
             width: ${this.props.isMobile === false ? "240vw" : "300vw"};
             list-style: none;
@@ -275,7 +262,7 @@ class Page extends Component {
             transition: ${this.props.transition} 0.2s ease-out;
             padding: 0;
             display: grid;
-            z-index: 1;
+            z-index: 5;
             position: fixed;
             top: ${this.props.isMobile === false ? "-70vh" : "-100vh"};
             left: ${this.props.isMobile === false ? "-70vw" : "-100vw"};
@@ -380,10 +367,19 @@ class Page extends Component {
             grid-column: 2;
             grid-row: 3;
           }
+
+          .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            height: 100vh;
+            width: 100vw;
+          }
         `}</style>
-      </div>
+      </Page>
     );
   }
 }
 
-export default connect(state => state)(Page);
+export default connect(state => state)(Index);

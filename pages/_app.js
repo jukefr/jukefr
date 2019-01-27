@@ -5,6 +5,7 @@ import React from "react";
 import NextSeo from "next-seo";
 import withRedux from "next-redux-wrapper";
 import SEO from "../next-seo.config";
+import isMobile from "../utils/is-mobile"
 
 const reducer = (
   state = {
@@ -13,7 +14,8 @@ const reducer = (
     y: 0,
     projects: [],
     transition: "all",
-    swipeAction: ""
+    swipeAction: "",
+    particly: false
   },
   action
 ) => {
@@ -63,13 +65,20 @@ const makeStore = (initialState, option) => {
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
-    ctx.store.dispatch({ type: "FOO", payload: "foo" });
 
     const pageProps = Component.getInitialProps
       ? await Component.getInitialProps(ctx)
       : {};
 
     return { pageProps };
+  }
+
+  componentDidMount() {
+	if (!isMobile(navigator)) {
+		this.props.store.dispatch({type: "IS_DESKTOP"})
+	} else {
+		this.props.store.dispatch({type: "IS_MOBILE"})	
+	}    
   }
 
   render() {
