@@ -6,36 +6,7 @@ import swiper from "../components/Swiper";
 
 import projectBatch from "../utils/project-batch";
 
-const projects = [
-  {
-    name: "fyle",
-    pictures: [
-      { name: "code.png", caption: "fyle - web asset processing utilities" },
-      {
-        name: "browser.png",
-        caption: "fyle - web asset processing utilities - documentation"
-      }
-    ]
-  },
-  {
-    name: "nodend",
-    pictures: [
-      {
-        name: "browser.png",
-        caption: "nodend.com - personnal blog about all kinds of tech stuff"
-      }
-    ]
-  },
-  {
-    name: "clize",
-    pictures: [
-      {
-        name: "code.png",
-        caption: "clize - run Javascript functions from the console"
-      }
-    ]
-  }
-];
+import projects from "../static/projects.json";
 
 class Page extends Component {
   constructor(props) {
