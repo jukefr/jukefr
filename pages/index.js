@@ -6,7 +6,7 @@ import swiper from "../components/Swiper";
 
 import projectBatch from "../utils/project-batch";
 
-import projects from "../static/projects.json";
+import projects from "../components/Projects.json";
 
 class Page extends Component {
   constructor(props) {
