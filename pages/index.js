@@ -229,7 +229,7 @@ class Index extends Component {
             left: 0;
             overflow: hidden;
             position: fixed;
-            z-index: 3;
+            z-index: 99;
             width: 100vw;
             height: 100vh;
           }
