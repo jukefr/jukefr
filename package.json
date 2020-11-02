@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "next": "^8.0.0-canary.15",
+    "next": "^9.3.2",
     "next-redux-wrapper": "^2.1.0",
     "next-seo": "^1.9.0",
     "react": "^16.7.0",
