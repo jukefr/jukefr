@@ -24,7 +24,7 @@ if you want to **support** my work, you can check out my {{<link "https://patreo
 
 i also have a {{<link "https://twitter.com/jukefr" blank>}}twitter{{< /link >}} account
 
-if you are a boomer my email is **hello [at] juke [dot] fr**
+my email is **hello [at] juke [dot] fr**
 
 hope you **enjoy** your stay
 
