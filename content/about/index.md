@@ -12,7 +12,7 @@ description = "whois the author"
 
 alias is **juke**
 
-lives in **france** and currently works in **paris** for {{<link "https://lajavaness.com/" blank>}}la javaness{{< /link >}}
+lives in **(.fr)ance** and currently works in **paris** for {{<link "https://lajavaness.com/" blank>}}la javaness{{< /link >}}
 
 likes **anything** that has to do with **technology**
 
