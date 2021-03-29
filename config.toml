@@ -12,7 +12,7 @@ PygmentsCodeFences = true
 PygmentsStyle = "dracula"
 
 [params]
-  description = "i do code and stuff" # Suggested, controls default description meta
+  description = "creates mostly ephemeral, always open source pet projects" # Suggested, controls default description meta
   author = "juke" # Optional, controls author name display on posts
   hide_author = false # Optional, set true to hide author name on posts
   show_menu = true # Optional, set true to enable section menu
