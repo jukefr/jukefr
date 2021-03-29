@@ -1,7 +1,7 @@
 +++
 title = "Ricing Linux in 2021"
 date = 2020-12-01T22:25:27+01:00
-description = "Want your desktop to look like your favorite movie/series hackerman ? Check this out and let the 1337s flow through you."
+description = "Want your desktop to look like your favorite movie/series hacker ? Check this out and let the 1337s flow through you."
 toc = true
 categories = ["linux"]
 tags = ["ricing", "ergonomics"]
@@ -33,14 +33,14 @@ However, my existential crisis was short-lived as I soon realized there are many
 
 ## a (not so quick) historical primer
 
-Speaking of ergonomics, I think it is quite important that I preface this article with a "small" section about it. We all know what the word means, from a distance. If you don't know what a home row is or why people use keyboard-only environments then there is little purpose in ricing your setup unless you want it to look "cool and 1337". Admittedly, I too was once a poorly cultivated skiddie, which is why I think it is important to talk about these ergonomics base principles since they are rarely taught nowadays.
+Speaking of ergonomics, I think it is quite important that I preface this article with a "small" section about it. We all know what the word means, from a distance. If you don't know what a home row is or why people use keyboard-only environments then there is little purpose in ricing your setup unless you want it to look "cool and 1337". Admittedly, I too was once a poorly cultivated skiddie, which is why I think it is important to talk about these ergonomics base concepts since they are rarely taught nowadays.
 
 ### keyboard
 
 Maybe you are a zoomer like me. The first OS you ever laid your hands on was probably a fully fledged graphical interface called Windows (95 in this case).
 What's this ? I move this mouse thingy, and I have a cursor that mirrors it on the screen ?
 What's that ? I type on this keyboard thingy and letters appear on the screen ?
-And that's usually how the trouble starts, you get into things, as an autodidact, fiddle about and eventually you end up getting the results you wanted. However, achieving your objective doesn't necessarily mean you went the "correct" way about doing it, in this case "ergonomically" ideal way or even the most efficient way.
+And that's usually how the trouble starts, you get into things, as an autodidact, fiddle about and eventually you end up getting the results you wanted. However, achieving your goals doesn't necessarily mean you went the "correct" way about doing it, in this case "ergonomically" ideal way or even the most efficient way.
 
 Let me give you a simple example : copy and paste.
 Everybody knows how to do it, if you are reading this you probably even know of at least two ways of doing it.
@@ -86,7 +86,7 @@ As you can see we are now only using our keyboard for this operation, in this ex
 
 So the first takeaway here is that efficiency and repeatability are major assets of the keyboard. Action 1 on a keyboard will (mostly) always result in the same consequence 1'. The only cognitive load associated with that now is that you have to learn a bunch of keybindings. Once you have them down however, it just gets easier and easier the more you use them and learn them. No matter how good you become with a mouse however, there will always be the cognitive load of having to process contextual information that will always vary, coupled with the inherent "inaccuracy" of a mouse, or should I say of human hands.
 
-Another major bonus of reduced mouse usage is that moving your hands between your mouse and your keyboard, and also simply using your mouse can lead to strain on your wrists (most mice are poorly ergonomically designed and apply strain to the wrist, and if your workspace is limited you might also fall into the habit of using your wrist to move your mouse instead of your shoulder), so by not using your mouse (or as little as possible) and having an appropriate posture on your keyboard you drastically reduce the strain on your wrists and therefore the risks of rsi.
+Another major bonus of reduced mouse usage is that moving your hands between your mouse and your keyboard, and also simply using your mouse can cause strain on your wrists (most mice are poorly ergonomically designed and apply strain to the wrist, and if your workspace is limited you might also fall into the habit of using your wrist to move your mouse instead of your shoulder), so by not using your mouse (or as little as possible) and having an appropriate posture on your keyboard you drastically reduce the strain on your wrists and therefore the risks of rsi.
 
 ### home row
 
@@ -110,7 +110,7 @@ If you've ever used `vi`, and wondered why the default movement keys are `hjkl`,
 
 **as a quick tldr of this preface** :
 - the keyboard allows you to memorize keybindings that produce specific repeatable actions without worrying (too much) about context and accuracy, both of them (learning the keybinds and accurate typing) are a question of practice, unlike a mouse
-- there is an ideal way of positioning your hands on a keyboard which leads to the "smoothest" experience possible, reduces strain on the wrists, and much of the conceptual choices of terminal based applications are a result of said "ergonomic" hand placement
+- there is an ideal way of positioning your hands on a keyboard which ensures to the "smoothest" experience possible, reduces strain on the wrists, and much of the conceptual choices of terminal based applications are a result of said "ergonomic" hand placement
 
 Keep all of this in mind when designing your custom rice, it's not simply about looking cool (at least for me), it's about having an efficient, ergonomic and coherent environment. When setting keybindings that you often use, try to privilege keys closest to the home row for instance. Usually it takes a while to narrow down exactly what functions you will be using more than others and fine-tuning everything, but it is important to always keep in mind that we're trying to make our life easier, not prettier (although usually once you're done with the functional part, then comes the "unixporn" part, where you can go crazy with all the shadows, corners, gaps, borders, backgrounds, etc you want).
 
