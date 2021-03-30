@@ -5,7 +5,6 @@ paginate = 11 # Number of posts to show before paginating
 related_content_limit = 5
 enableRobotsTXT = true # Suggested, enable robots.txt file
 googleAnalytics = "UA-70340111-1" # Optional, add tracking Id for analytics
-disqusShortname = "juke-fr" # Optional, add Disqus shortname for comments
 SectionPagesMenu = "main" # Enable menu system for lazy bloggers
 footnoteReturnLinkContents = "↩" # Provides a nicer footnote return link
 PygmentsCodeFences = true
