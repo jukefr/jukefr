@@ -59,13 +59,8 @@ weight = 5
 identifier = "search"
 url = "/search/"
 [[menu.main]]
-name = "source"
-weight = 6
-identifier = "source"
-url = "https://github.com/jukefr/jukefr"
-[[menu.main]]
 name = "analytics"
-weight = 7
+weight = 6
 identifier = "analytics"
 url = "#analytics-banner"
 
