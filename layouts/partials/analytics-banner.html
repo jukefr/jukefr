@@ -63,6 +63,22 @@
         <button id="analytics-hide">hide</button>
     </div>
 
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-70340111-1']);
+        _gaq.push(['_trackPageview']);
+
+        var loadGoogleAnalytics = function(){
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        }
+    </script>
+
     <script>
         // Kinda fugly but kinda gets the job done :3
         document.addEventListener("DOMContentLoaded", function(){
@@ -96,20 +112,6 @@
                 analyticsConsent: getCookie("analyticsConsent")
             };
 
-            var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', 'UA-70340111-1']);
-            _gaq.push(['_trackPageview']);
-
-            const load = function(){
-                var ga = document.createElement('script');
-                ga.type = 'text/javascript';
-                ga.async = true;
-                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-
-                const s = document.getElementsByTagName('script')[0];
-                s.parentNode.insertBefore(ga, s);
-            }
-
             const click = (evt) => {
                 const config = {
                     analyticsHide: getCookie("analyticsHide"),
@@ -140,7 +142,7 @@
                     // add google analytics
                     document.getElementById("analytics-yes").classList.add('active')
                     document.getElementById("analytics-no").classList.remove('active')
-                    load()
+                    loadGoogleAnalytics()
                 }
                 if (config.analyticsConsent === "false") {
                     document.getElementById("analytics-yes").classList.remove('active')
