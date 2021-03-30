@@ -50,6 +50,11 @@ PygmentsStyle = "dracula"
   weight = 5
   identifier = "search"
   url = "/search/"
+[[menu.main]]
+  name = "source"
+  weight = 6
+  identifier = "source"
+  url = "https://github.com/jukefr/jukefr"
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]

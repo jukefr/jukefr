@@ -10,9 +10,9 @@ description = "whois the author"
     {{< lazy name="hello" size="35" >}}
 {{< /size >}}
 
-alias is **juke**
+name is **juke** 
 
-lives in **(.fr)ance** and currently works in **paris** for {{<link "https://lajavaness.com/" blank>}}la javaness{{< /link >}}
+lives in **.france** and currently works in **paris** for {{<link "https://lajavaness.com/" blank>}}la javaness{{< /link >}}
 
 likes **anything** that has to do with **technology**
 
