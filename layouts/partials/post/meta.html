@@ -1,17 +1,35 @@
-{{ if not (eq .Type "snippet") }}
-<svg style="margin:-3px 5px;" class="i-clock" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="6.25%">
-  <circle cx="16" cy="16" r="14" />
-  <path d="M16 8 L16 16 20 20" />
-</svg>
-<span style="margin-right:10px;">{{ .ReadingTime }} minute read</span>
-{{end}}
-<svg style="margin:-3px -6px;" class="i-edit" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="6.25%">
-  <path d="M30 7 L25 2 5 22 3 29 10 27 Z M21 6 L26 11 Z M5 22 L10 27 Z" />
-</svg>
-{{ if .PublishDate.IsZero }}
-  published: <time datetime="{{ .Date.Format "2006-01-02T15:04:05-07:00" }}">{{ .Date.Format "2 Jan, 2006" }}</time>
-{{ else if lt .PublishDate .Lastmod }}
-  modified: <time datetime="{{ .Lastmod.Format "2006-01-02T15:04:05-07:00" }}">{{ .Lastmod.Format "2 Jan, 2006" }}</time>
-{{ else }}
-  published: <time datetime="{{ .PublishDate.Format "2006-01-02T15:04:05-07:00" }}">{{ .PublishDate.Format "2 Jan, 2006" }}</time>
-{{ end }}
+<div class="muted" style="display: flex;align-items: center;">
+  <style>
+    .i-clock,
+    .i-edit {
+      margin: 0 8px 0 0;
+    }
+
+    .meta-class {
+      display: block;
+      margin-right: 20px;
+    }
+  </style>
+  {{ if not (eq .Type "snippet") }}
+  <svg  class="i-clock" viewBox="0 0 32 32" width="16" height="16" fill="none"
+       stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="6.25%">
+    <circle cx="16" cy="16" r="14"/>
+    <path d="M16 8 L16 16 20 20"/>
+  </svg>
+  <span class="meta-class" >{{ .ReadingTime }} minute read</span>
+  {{end}}
+  <svg  class="i-edit" viewBox="0 0 32 32" width="16" height="16" fill="none"
+       stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="6.25%">
+    <path d="M30 7 L25 2 5 22 3 29 10 27 Z M21 6 L26 11 Z M5 22 L10 27 Z"/>
+  </svg>
+  {{ if .PublishDate.IsZero }}
+  <span class="meta-class-idk">published:&nbsp;</span>
+  <time class="meta-class" datetime="{{ .Date.Format " 2006-01-02T15:04:05-07:00" }}">{{ .Date.Format "2 Jan, 2006" }}</time>
+  {{ else if lt .PublishDate .Lastmod }}
+  <span class="meta-class-idk">updated:&nbsp;</span>
+  <time class="meta-class" datetime="{{ .Lastmod.Format " 2006-01-02T15:04:05-07:00" }}">{{ .Lastmod.Format "2 Jan, 2006" }}</time>
+  {{ else }}
+  <span class="meta-class-idk">published:&nbsp;</span>
+  <time class="meta-class" datetime="{{ .PublishDate.Format " 2006-01-02T15:04:05-07:00" }}">{{ .PublishDate.Format "2 Jan, 2006" }}</time>
+  {{ end }}
+</div>

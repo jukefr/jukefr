@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.LanguageCode }}">
   <head>
-    {{ .Hugo.Generator }}
+    {{ hugo.Generator }}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ block "title" . }}{{ lower .Title }} | {{ .Site.Title }}{{ end }}</title>
@@ -24,9 +24,7 @@
     {{ end }}
     {{ partial "meta/http-referrer.html" . }}
     {{ template "_internal/google_analytics_async.html" . }}
-    {{ if .RSSLink }}
-      <link href="{{ .RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}">
-    {{ end }}
+    {{ with .OutputFormats.Get "RSS" }}<link href="{{ .RelPermalink }}" rel="alternate" type="application/rss+xml" title="rss feed">{{ end }}
     <link rel="canonical" href="{{ .Permalink }}">
     {{ if (isset .Params "prev") }}
       <link rel="prev" href="{{ .Params.prev }}">

@@ -12,7 +12,7 @@
                 <a href="{{ .RelPermalink }}">{{ .Title }}</a>
             </h2>
             {{ if eq .Type "snippet" }}
-            <p class="muted">{{ partial "post/meta.html" . }}</p>
+            {{ partial "post/meta.html" . }}
             {{ end }}
         </header>
         {{ if .Description }}
