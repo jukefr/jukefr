@@ -31,7 +31,7 @@ And that your job is to be behind a screen writing code. And your hobby is prett
 
 However, my existential crisis was short-lived as I soon realized there are many things that I could do to improve the ergonomics of my setup.
 
-## a (not so quick) historical primer
+## a (not so quick) primer
 
 Speaking of ergonomics, I think it is quite important that I begin this article with a "small" section about it. We all know what the word means, from a distance. If you don't know what a home row is or why people use keyboard-only environments, then there is little purpose in ricing your setup unless you want it to look "cool and 1337". I think it is important to talk about these ergonomics base concepts since they are rarely taught nowadays.
 
