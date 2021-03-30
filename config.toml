@@ -10,6 +10,7 @@ SectionPagesMenu = "main" # Enable menu system for lazy bloggers
 footnoteReturnLinkContents = "↩" # Provides a nicer footnote return link
 PygmentsCodeFences = true
 PygmentsStyle = "dracula"
+enableGitInfo = true
 
 [params]
 description = "creates mostly ephemeral, always open source pet projects" # Suggested, controls default description meta
@@ -27,7 +28,7 @@ search = true
 
 [frontmatter]
 date = ["date", "publishDate", "lastmod"]
-lastmod = ["lastmod", ":fileModTime", ":default"]
+lastmod = [":git", "lastmod", "date", "publishDate"]
 publishDate = ["publishDate", "date"]
 expiryDate = ["expiryDate"]
 
