@@ -23,7 +23,6 @@
       {{ partial "head/site-verification.html" . }}
     {{ end }}
     {{ partial "meta/http-referrer.html" . }}
-    {{ template "_internal/google_analytics_async.html" . }}
     {{ with .OutputFormats.Get "RSS" }}<link href="{{ .RelPermalink }}" rel="alternate" type="application/rss+xml" title="rss feed">{{ end }}
     <link rel="canonical" href="{{ .Permalink }}">
     {{ if (isset .Params "prev") }}

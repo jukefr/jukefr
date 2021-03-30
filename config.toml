@@ -63,7 +63,11 @@ name = "source"
 weight = 6
 identifier = "source"
 url = "https://github.com/jukefr/jukefr"
-
+[[menu.main]]
+name = "analytics"
+weight = 7
+identifier = "analytics"
+url = "#analytics-banner"
 
 [outputs]
 home = ["HTML", "RSS", "JSON", "AMP"]

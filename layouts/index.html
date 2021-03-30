@@ -1,7 +1,9 @@
 {{ define "title" -}}
   {{ .Site.Title }}
 {{- end }}
+
 {{ define "header" }}
+  {{ partial "analytics-banner.html" . }}
   {{ partial "menu.html" . }}
 {{ end }}
 {{ define "main" }}

@@ -1,0 +1,165 @@
+
+
+<div id="analytics-banner">
+    <style>
+        #analytics-banner {
+            width: 100%;
+            background-color: #FF5555;
+            color: #282A36;
+            padding: 1px 2px 0 2px;
+            display: none;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        #analytics-banner button {
+            background: none;
+            border: 1px solid #282A36;
+            cursor: pointer;
+        }
+
+        #analytics-banner button:hover {
+            background: #f1fa8c;
+            border: 1px solid #282A36;
+            cursor: pointer;
+        }
+
+        #analytics-banner button:active {
+            background: #f1fa8c;
+            font-weight: bold;
+            border: 1px solid #282A36;
+            cursor: pointer;
+        }
+
+        #analytics-banner button.active {
+            background: #f1fa8c;
+            font-weight: bold;
+            border: 1px solid #282A36;
+            cursor: pointer;
+        }
+
+        a[href="#analytics-banner"] {
+            float: right;
+            border: 1px solid transparent;
+            background: #FF5555;
+            color: #282A36;
+        }
+
+        a[href="#analytics-banner"]:hover,
+        a[href="#analytics-banner"]:active {
+            background: #f1fa8c;
+            border: 1px solid #282A36;
+            cursor: pointer;
+        }
+
+        a[href="#analytics-banner"]:active {
+            font-weight: bold;
+        }
+    </style>
+    <span>enable google analytics ?</span>
+    <div>
+        <button id="analytics-yes">yes</button>
+        <button id="analytics-no">no</button>
+        <button id="analytics-hide">hide</button>
+    </div>
+
+    <script>
+        // Kinda fugly but kinda gets the job done :3
+        document.addEventListener("DOMContentLoaded", function(){
+
+            function setCookie(name, value, daysToLive = 30) {
+                var cookie = name + "=" + encodeURIComponent(value);
+                if(typeof daysToLive === "number") {
+                    cookie += "; max-age=" + (daysToLive*24*60*60);
+                    document.cookie = cookie + "; path=/";
+                }
+            }
+
+            function getCookie(name) {
+                var cookieArr = document.cookie.split(";");
+                for(var i = 0; i < cookieArr.length; i++) {
+                    var cookiePair = cookieArr[i].split("=");
+                    if(name === cookiePair[0].trim()) {
+                        return decodeURIComponent(cookiePair[1]);
+                    }
+                }
+                return null;
+            }
+
+
+            // bootstrap
+            if (getCookie("analyticsHide") === null) setCookie("analyticsHide", "false")
+            if (getCookie("analyticsConsent") === null) setCookie("analyticsConsent", "false")
+
+            const config = {
+                analyticsHide: getCookie("analyticsHide"),
+                analyticsConsent: getCookie("analyticsConsent")
+            };
+
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-70340111-1']);
+            _gaq.push(['_trackPageview']);
+
+            const load = function(){
+                var ga = document.createElement('script');
+                ga.type = 'text/javascript';
+                ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+
+                const s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(ga, s);
+            }
+
+            const click = (evt) => {
+                const config = {
+                    analyticsHide: getCookie("analyticsHide"),
+                    analyticsConsent: getCookie("analyticsConsent")
+                };
+                evt.preventDefault()
+                switch (evt.target.id) {
+                    case 'analytics-yes':
+                        process({...config, analyticsConsent: "true", analyticsHide: "true"})
+                        break;
+                    case 'analytics-no':
+                        process({...config, analyticsConsent: "false", analyticsHide: "true"})
+                        if (config.analyticsConsent === "true") location.reload(); // reload if previously true
+                        break;
+                    case 'analytics-hide':
+                        process({...config, analyticsHide: "true"})
+                        break;
+                    default: // should only be the analytics link in menu can't be bothered for now ^.^
+                        process({...config, analyticsHide: "false"})
+                        break;
+                }
+            }
+
+            const process = (config) => {
+                setCookie("analyticsHide", config.analyticsHide)
+                setCookie("analyticsConsent", config.analyticsConsent)
+                if (config.analyticsConsent === "true") {
+                    // add google analytics
+                    document.getElementById("analytics-yes").classList.add('active')
+                    document.getElementById("analytics-no").classList.remove('active')
+                    load()
+                }
+                if (config.analyticsConsent === "false") {
+                    document.getElementById("analytics-yes").classList.remove('active')
+                    document.getElementById("analytics-no").classList.add('active')
+                }
+                if (config.analyticsHide === "true") {
+                    document.getElementById('analytics-banner').style.display = "none"
+                    document.querySelector('a[href="#analytics-banner"]').style.display = "inline"
+                }
+                if (config.analyticsHide === "false") {
+                    document.getElementById('analytics-banner').style.display = "flex"
+                    document.querySelector('a[href="#analytics-banner"]').style.display = "none"
+                }
+            }
+            document.getElementById("analytics-yes").addEventListener("click", click);
+            document.getElementById("analytics-no").addEventListener("click", click);
+            document.getElementById("analytics-hide").addEventListener("click", click);
+            document.querySelector('a[href="#analytics-banner"]').addEventListener("click", click);
+            process(config)
+        })
+    </script>
+</div>
