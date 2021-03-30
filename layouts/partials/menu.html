@@ -1,5 +1,5 @@
 {{ if ne .Site.Params.show_menu false }}
-  <nav itemscope itemtype="http://schema.org/SiteNavigationElement">
+  <nav itemscope itemtype="http://schema.org/SiteNavigationElement" style="overflow: auto;">
     {{ $url := .URL }}
     {{ range .Site.Menus.main }}
       <a itemprop="url" class="{{ if eq $url .URL }}active{{ end }}" href="{{ .URL }}"><span itemprop="name">{{ .Name }}</span></a>
