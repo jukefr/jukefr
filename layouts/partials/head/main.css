@@ -46,12 +46,20 @@ a {
     cursor: pointer;
     color: #ff79c6;
     text-decoration: none;
-    border-bottom: 1px solid #ff79c6
+    border-bottom: 1px solid #ff79c6;
+    border-top: 1px solid transparent;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
 }
 
 a:hover {
-    background-color: #ff79c6;
-    color: #f8f8f2
+    background-color: #f1fa8c;
+    color: #282a36 !important;
+    border: 1px solid #ff79c6;
+}
+
+a[href*="://"]:hover::after, a[rel*="external"] {
+    content: " " url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20class='i-external'%20viewBox='0%200%2032%2032'%20width='14'%20height='14'%20fill='none'%20stroke='%23282a36'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke-width='9.38%'%3E%3Cpath%20d='M14%209%20L3%209%203%2029%2023%2029%2023%2018%20M18%204%20L28%204%2028%2014%20M28%204%20L14%2018'/%3E%3C/svg%3E")
 }
 
 .grid {
@@ -1043,7 +1051,7 @@ figcaption {
 }
 
 .muted, .hack .help-block {
-    color: #6272a4
+    color: #8be9fd
 }
 
 .hack .readmore {
@@ -1124,8 +1132,10 @@ input.form-control {
 
 nav a.active {
     background-color: #ff79c6;
-    color: #fff
+    color: #191B36;
+    font-weight: bold;
 }
+
 
 a[itemprop="url"] {
     color: #50fa7b
