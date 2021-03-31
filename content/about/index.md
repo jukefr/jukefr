@@ -26,11 +26,11 @@ thoroughly enjoys the {{<link "https://github.com/dracula/dracula-theme" blank>}
 
 **follow** him on {{<link "https://twitter.com/jukefr" blank>}}twitter{{< /link >}}, {{<link "https://www.youtube.com/channel/UCZQIVYc3EUELGOtskMoLhQA" blank>}}youtube{{< /link >}}, {{<link "https://soundcloud.com/jukefr" blank>}}soundcloud{{< /link >}} or {{<link "https://www.twitch.tv/jukefrance" blank>}}twitch{{< /link >}}
 
+**support** him on {{<link "https://patreon.com/jukefr" blank>}}patreon{{< /link >}} or {{<link "https://github.com/sponsors/jukefr" blank>}}github sponsors{{< /link >}}
+
 **play** on {{<link "https://steamcommunity.com/id/jukefr/" blank>}}steam{{< /link >}}, add `jukefr#2107` on **battle.net** or chat on **discord** with `jukefr#0001`
 
 **email** is `pm [at] juke [dot] fr`
-
-**support** him on {{<link "https://patreon.com/jukefr" blank>}}patreon{{< /link >}} or {{<link "https://github.com/sponsors/jukefr" blank>}}github sponsors{{< /link >}}
 
 have a lovely day 💜
 
