@@ -18,9 +18,11 @@ likes **anything** that has to do with **technology**
 
 creates mostly **ephemeral**, always **open source** pet projects
 
-**discover** his work on {{<link "https://github.com/jukefr" blank>}}github{{< /link >}}, {{<link "https://youtube.com/jukefr" blank>}}youtube{{< /link >}}, {{<link "https://hackerone.com/jukefr" blank>}}hackerone{{< /link >}} or {{<link "https://linkedin.com/in/jukefr" blank>}}linkedin{{< /link >}}
+**discover** his work on {{<link "https://github.com/jukefr" blank>}}github{{< /link >}}, {{<link "https://hackerone.com/jukefr" blank>}}hackerone{{< /link >}} or {{<link "https://linkedin.com/in/jukefr" blank>}}linkedin{{< /link >}}
 
-**chat** with him on {{<link "https://twitter.com/jukefr" blank>}}twitter{{< /link >}} or `jukefr#0001` on discord
+**follow** him on {{<link "https://twitter.com/jukefr" blank>}}twitter{{< /link >}}, {{<link "https://youtube.com/jukefr" blank>}}youtube{{< /link >}} or {{<link "https://www.twitch.tv/jukefrance" blank>}}twitch{{< /link >}}
+
+**play** on {{<link "https://steamcommunity.com/id/jukefr/" blank>}}steam{{< /link >}}, add `jukefr#2107` on **battle.net** or chat on **discord** with `jukefr#0001`
 
 **email** is `pm [at] juke [dot] fr`
 
