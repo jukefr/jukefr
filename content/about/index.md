@@ -20,7 +20,7 @@ creates mostly **ephemeral**, always **open source** pet projects
 
 **discover** his work on {{<link "https://github.com/jukefr" blank>}}github{{< /link >}}, {{<link "https://youtube.com/jukefr" blank>}}youtube{{< /link >}}, {{<link "https://hackerone.com/jukefr" blank>}}hackerone{{< /link >}} or {{<link "https://linkedin.com/in/jukefr" blank>}}linkedin{{< /link >}}
 
-**chat** with him on {{<link "https://twitter.com/jukefr" blank>}}twitter{{< /link >}}, jukefr#0001 on discord, email is hello [at] juke [dot] fr
+**chat** with him on {{<link "https://twitter.com/jukefr" blank>}}twitter{{< /link >}}, jukefr#0001 on discord, email is pm [at] juke [dot] fr
 
 **support** him on {{<link "https://patreon.com/jukefr" blank>}}patreon{{< /link >}} or {{<link "https://github.com/sponsors/jukefr" blank>}}github sponsors{{< /link >}}
 
