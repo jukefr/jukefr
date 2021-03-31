@@ -1198,12 +1198,23 @@ tr td:first-child, tr td:first-child pre {
 }
 
 video {
-  width: 100%;
+    width: 100%;
 }
 
 
 * {
     text-transform: lowercase;
+}
+
+*,
+*:link,
+*:hover,
+*:visited {
+    cursor: url(/milk.cur), auto !important;
+}
+
+*:active {
+    cursor: url(/klim.cur), auto !important;
 }
 
 p > code:not([class]),
