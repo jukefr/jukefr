@@ -1051,7 +1051,7 @@ figcaption {
 }
 
 .muted, .hack .help-block {
-    color: #8be9fd
+    color: #f1fa8c
 }
 
 .hack .readmore {
@@ -1131,8 +1131,12 @@ input.form-control {
 }
 
 nav a.active {
-    background-color: #ff79c6;
-    color: #191B36;
+    border: 1px solid #ff79c6;
+    padding: 0 2px;
+    font-weight: bold;
+}
+
+nav a:active {
     font-weight: bold;
 }
 
@@ -1292,7 +1296,7 @@ a[href="#analytics-banner"]:active {
 
 
 #summary-tags {
-    background: #8be9fd;
+    background: #ff79c6;
     color: #282a36;
     padding: 1px 2px 0;
 }
@@ -1308,6 +1312,20 @@ a[href="#analytics-banner"]:active {
     margin-bottom: 10px;
 }
 
+header h2 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 header h2 a {
     color: white !important;
+    margin-right: 10px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+header h2 span {
+    margin-right: 10px;
+    margin-bottom: 5px;
+    font-weight: normal;
 }
