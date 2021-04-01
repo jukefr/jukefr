@@ -1282,25 +1282,24 @@ a[href="#analytics-banner"]:active {
 #wip-summary {
     background: #ffb86c;
     color: #282a36;
-    padding: 1px;
+    padding: 1px 2px 0;
 }
 
 #summary-categories {
     background: #50fa7b;
     color: #282a36;
-    padding: 1px;
+    padding: 1px 2px 0;
 }
 
 
 #summary-tags {
     background: #8be9fd;
     color: #282a36;
-    padding: 1px;
+    padding: 1px 2px 0;
 }
 
 
 #wip-banner {
-    margin-top: 10px;
     width: 100%;
     background: #ffb86c;
     color: #282A36;
