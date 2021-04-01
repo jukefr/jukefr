@@ -1051,7 +1051,7 @@ figcaption {
 }
 
 .muted, .hack .help-block {
-    color: #f1fa8c
+    color: #6272a4
 }
 
 .hack .readmore {
@@ -1142,7 +1142,7 @@ nav a:active {
 
 
 a[itemprop="url"] {
-    color: #50fa7b
+    color: #f8f8f2;
 }
 
 a[itemprop="url"]:hover {
@@ -1229,7 +1229,7 @@ li > code:not([class]) {
 
 #analytics-banner {
     width: 100%;
-    background-color: #FF5555;
+    background-color: #bd93f9;
     color: #282A36;
     padding: 1px 2px 0 2px;
     display: none;
@@ -1244,19 +1244,35 @@ li > code:not([class]) {
 }
 
 #analytics-banner button:hover {
-    background: #f1fa8c;
+    background: #50fa7b;
     border: 1px solid #282A36;
     cursor: pointer;
 }
 
 #analytics-banner button:active {
-    background: #f1fa8c;
+    background: #50fa7b;
     font-weight: bold;
     border: 1px solid #282A36;
     cursor: pointer;
 }
 
 #analytics-banner button.active {
+    background: #50fa7b;
+    font-weight: bold;
+    border: 1px solid #282A36;
+    cursor: pointer;
+}
+
+#analytics-banner button#analytics-yes.active,
+#analytics-banner button#analytics-yes:hover {
+    background: #ff5555;
+    font-weight: bold;
+    border: 1px solid #282A36;
+    cursor: pointer;
+}
+
+#analytics-banner button#analytics-hide.active,
+#analytics-banner button#analytics-hide:hover {
     background: #f1fa8c;
     font-weight: bold;
     border: 1px solid #282A36;
@@ -1267,7 +1283,7 @@ a[href="#analytics-banner"] {
     float: right;
     border: 1px solid transparent;
     padding: 0 2px;
-    background: #FF5555;
+    background: #bd93f9;
     color: #282A36;
 }
 
@@ -1283,20 +1299,20 @@ a[href="#analytics-banner"]:active {
 }
 
 #wip-summary {
-    background: #ffb86c;
+    background: #f8f8f2;
     color: #282a36;
     padding: 1px 2px 0;
 }
 
 #summary-categories {
-    background: #50fa7b;
+    background: #ff79c6;
     color: #282a36;
     padding: 1px 2px 0;
 }
 
 
 #summary-tags {
-    background: #ff79c6;
+    background: #8be9fd;
     color: #282a36;
     padding: 1px 2px 0;
 }
@@ -1304,9 +1320,8 @@ a[href="#analytics-banner"]:active {
 
 #wip-banner {
     width: 100%;
-    background: #ffb86c;
+    background: #f8f8f2;
     color: #282A36;
-    margin-top: 20px;
     padding: 1px 2px 0 2px;
     justify-content: space-between;
     margin-bottom: 10px;

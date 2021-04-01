@@ -6,8 +6,8 @@
   <article itemscope itemtype="http://schema.org/BlogPosting">
     {{ template "_internal/schema.html" . }}
     <header>
+      <h1  itemprop="headline">{{ .Title }}</h1>
       {{ partial "wip-maybe.html" . }}
-      <h1 style="margin-top: 0;padding-top: 0;" itemprop="headline">{{ .Title }}</h1>
       {{ partial "post/meta.html" . }}
       {{ if .Description }}
         <blockquote itemprop="description">{{ .Description }}</blockquote>
