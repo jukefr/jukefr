@@ -1223,7 +1223,6 @@ li > code:not([class]) {
 }
 
 
-
 #analytics-banner {
     width: 100%;
     background-color: #FF5555;
@@ -1307,4 +1306,8 @@ a[href="#analytics-banner"]:active {
     padding: 1px 2px 0 2px;
     justify-content: space-between;
     margin-bottom: 10px;
+}
+
+header h2 a {
+    color: white !important;
 }
