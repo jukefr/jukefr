@@ -1,5 +1,5 @@
 +++
-title = "Up and Running with Hugo"
+title = "Up and Running with Hugo in 2018"
 date = 2018-07-15T03:11:01+02:00
 description = "From A to Z for my new blog setup."
 categories = ["blog"]
