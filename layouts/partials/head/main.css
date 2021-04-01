@@ -1221,3 +1221,91 @@ p > code:not([class]),
 li > code:not([class]) {
     background-color: #3d3f4a;
 }
+
+
+
+#analytics-banner {
+    width: 100%;
+    background-color: #FF5555;
+    color: #282A36;
+    padding: 1px 2px 0 2px;
+    display: none;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+#analytics-banner button {
+    background: none;
+    border: 1px solid #282A36;
+    cursor: pointer;
+}
+
+#analytics-banner button:hover {
+    background: #f1fa8c;
+    border: 1px solid #282A36;
+    cursor: pointer;
+}
+
+#analytics-banner button:active {
+    background: #f1fa8c;
+    font-weight: bold;
+    border: 1px solid #282A36;
+    cursor: pointer;
+}
+
+#analytics-banner button.active {
+    background: #f1fa8c;
+    font-weight: bold;
+    border: 1px solid #282A36;
+    cursor: pointer;
+}
+
+a[href="#analytics-banner"] {
+    float: right;
+    border: 1px solid transparent;
+    background: #FF5555;
+    color: #282A36;
+}
+
+a[href="#analytics-banner"]:hover,
+a[href="#analytics-banner"]:active {
+    background: #f1fa8c;
+    border: 1px solid #282A36;
+    cursor: pointer;
+}
+
+a[href="#analytics-banner"]:active {
+    font-weight: bold;
+}
+
+#wip-summary {
+    background: #ffb86c;
+    color: #282a36;
+    padding: 1px;
+}
+
+#summary-categories {
+    background: #50fa7b;
+    color: #282a36;
+    padding: 1px;
+}
+
+
+#summary-tags {
+    background: #8be9fd;
+    color: #282a36;
+    padding: 1px;
+}
+
+
+#wip-banner {
+    margin-top: 10px;
+    width: 100%;
+    background: #ffb86c;
+    color: #282A36;
+    margin-top: 20px;
+    text-align: center;
+    padding: 1px 2px 0 2px;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}

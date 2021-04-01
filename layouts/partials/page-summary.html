@@ -2,7 +2,7 @@
   <header>
     <h2 itemprop="name">
       <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-      #{{ .Type }}
+      {{ if and (isset .Params "wip") .Params.wip  }} <span id="wip-summary">wip</span> {{ end }} <span id="summary-categories">{{ .Params.categories }}</span> <span id="summary-tags">{{ .Params.tags }}</span>
     </h2>
     {{ if or (eq .Type "post") (eq .Type "snippet") }}
       {{ partial "post/meta.html" . }}

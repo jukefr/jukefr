@@ -5,7 +5,7 @@ description = "Apple has been notoriously concerned about user customization to 
 toc = true
 categories = ["macos"]
 tags = ["ricing"]
-draft = true
+wip = true
 images = [
   "/post/ricing-macos/images/demo.png"
 ] # overrides the site-wide open graph image
