@@ -8,7 +8,7 @@
 {{ end }}
 {{ define "main" }}
   <header>
-    <h1>{{ .Site.Params.Author }} 💜 {{ .Site.Params.Description }}</h1>
+    <h1>{{ .Site.Params.Author }} <img id="site-icon" src="/milk.png" alt="site-icon"> {{ .Site.Params.Description }}</h1>
   </header>
   {{ range (.Paginate (where .Site.RegularPages "Section" "in" (slice "post" "snippet"))).Pages }}
     {{ partial "page-summary.html" . }}

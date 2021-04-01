@@ -32,7 +32,7 @@ thoroughly enjoys the {{<link "https://github.com/dracula/dracula-theme" blank>}
 
 **email** is `pm [at] juke [dot] fr`
 
-have a lovely day 💜
+have a lovely day {{< rawhtml >}}<img id="site-icon" src="/milk.png" alt="site-icon">{{< /rawhtml >}}
 
 # the site
 

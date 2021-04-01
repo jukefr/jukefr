@@ -1344,3 +1344,7 @@ header h2 span {
     margin-bottom: 5px;
     font-weight: normal;
 }
+
+#site-icon {
+    height: 1rem;
+}
