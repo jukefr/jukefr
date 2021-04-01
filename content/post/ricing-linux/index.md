@@ -1,5 +1,5 @@
 +++
-title = "Ricing Linux in 2021"
+title = "wip | Ricing Linux in 2021"
 date = 2020-12-01T22:25:27+01:00
 description = "Want your desktop to look like your favorite movie/series hacker ? Check this out and let the 1337s flow through you."
 toc = true
