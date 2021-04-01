@@ -1263,6 +1263,7 @@ li > code:not([class]) {
 a[href="#analytics-banner"] {
     float: right;
     border: 1px solid transparent;
+    padding: 0 2px;
     background: #FF5555;
     color: #282A36;
 }
