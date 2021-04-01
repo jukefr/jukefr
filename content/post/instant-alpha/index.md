@@ -4,6 +4,7 @@ date = 2018-07-15T03:11:01+02:00
 description = "using the convert utility provided by imagemagick to remove an image background"
 categories = ["optimization"]
 tags = ["imagemagick"]
+draft = true
 images = [
   "/opengraph.png"
 ] # overrides the site-wide open graph image

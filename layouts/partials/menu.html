@@ -2,7 +2,9 @@
   <nav itemscope itemtype="http://schema.org/SiteNavigationElement" style="overflow: auto;">
     {{ $url := .URL }}
     {{ range .Site.Menus.main }}
-      <a itemprop="url" class="{{ if eq $url .URL }}active{{ end }}" href="{{ .URL }}"><span itemprop="name">{{ .Name }}</span></a>
+      {{ if (and (ne "posts" .Name) (ne "snippets" .Name)) }}
+         <a itemprop="url" class="{{ if eq $url .URL }}active{{ end }}" href="{{ .URL }}"><span itemprop="name">{{ .Name }}</span></a>
+      {{ end }}
     {{ end }}
   </nav>
 {{ end }}
