@@ -34,11 +34,23 @@
     {{ partial "head/favicon.html" . }}
     {{ partial "global-styles.html" . }}
     {{ partial "async-scripts.html" . }}
+
   </head>
   {{ $theme_variant := .Site.Params.theme_variant | default "hack dark" }}
-  <body class="{{ $theme_variant }} main container">
+  <body id="body" class="{{ $theme_variant }} main container">
     <header>{{ block "header" . }}{{ end }}</header>
     <main>{{ block "main" . }}{{ end }}</main>
     <footer>{{ block "footer" . }}{{ end }}</footer>
   </body>
+  <script src="/js/cursory.js"></script>
+  <script>
+    // order does matter somewhat so make this a chain not parallel for now
+    applyCursor("html", "/cursors/hover.ani", ":hover")
+            .then(() => applyCursor("p, blockquote, .muted, h1, h2, h3, h4, h5, h6, div > span, figcaption, li", "/cursors/text.ani", ":hover"))
+            .then(() => applyCursor("a, summary, button", "/cursors/alternate.ani", ":hover"))
+            .then(() => applyCursor("button", "/cursors/link.ani", ":active"))
+            .then(() => applyCursor("a", "/cursors/link.ani", ":active"))
+            .then(() => applyCursor("summary", "/cursors/link.ani", ":active"))
+            .then(() => applyCursor("html", "/cursors/active.ani", ":active")) // easter egg (that works like 10% of the time lol)
+  </script>
 </html>

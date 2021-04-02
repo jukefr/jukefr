@@ -46,4 +46,4 @@ google analytics is available as an opt-in if you want to share data with me, by
 
 none of this information should be sensitive and/or allow third parties to identify you in any way (except if you enable the tracking script of course)
 
-i have no real clue about how licensing works so here goes nothing, bpgdec.js is `lpgl`, lazysizes.js is `mit`, (i think) ga.js is `apache`, afterdark was `wtfpl` at time of fork and now `agpl`, this website itself is {{<link "https://github.com/jukefr/jukefr/blob/main/LICENSE.md" blank>}}agpl{{< /link >}}
+i have no real clue about how licensing works so here goes nothing, bpgdec.js is `lpgl`, lazysizes.js is `mit`, (i think) ga.js is `apache`, afterdark was `wtfpl` at time of fork and now `agpl`, ani-cursor is `mit`, the cursors are under `cc` attributed to hhhh, this website itself is {{<link "https://github.com/jukefr/jukefr/blob/main/LICENSE.md" blank>}}agpl{{< /link >}}

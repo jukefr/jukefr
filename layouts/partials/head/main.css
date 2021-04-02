@@ -43,7 +43,7 @@ code[class*=language-], pre[class*=language-], pre code {
 }
 
 a {
-    cursor: pointer;
+    /*cursor: pointer;*/
     color: #ff79c6;
     text-decoration: none;
     border-bottom: 1px solid #ff79c6;
@@ -519,7 +519,7 @@ select.form-control {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
+    /*cursor: pointer;*/
     outline: 0;
     padding: .65rem 2rem;
     font-size: 1rem;
@@ -1210,17 +1210,6 @@ video {
     text-transform: lowercase;
 }
 
-*,
-*:link,
-*:hover,
-*:visited {
-    cursor: url(/milk.cur), auto !important;
-}
-
-*:active {
-    cursor: url(/klim.cur), auto !important;
-}
-
 p > code:not([class]),
 li > code:not([class]) {
     background-color: #3d3f4a;
@@ -1240,27 +1229,27 @@ li > code:not([class]) {
 #analytics-banner button {
     background: none;
     border: 1px solid #282A36;
-    cursor: pointer;
+    /*cursor: pointer;*/
 }
 
 #analytics-banner button:hover {
     background: #50fa7b;
     border: 1px solid #282A36;
-    cursor: pointer;
+    /*cursor: pointer;*/
 }
 
 #analytics-banner button:active {
     background: #50fa7b;
     font-weight: bold;
     border: 1px solid #282A36;
-    cursor: pointer;
+    /*cursor: pointer;*/
 }
 
 #analytics-banner button.active {
     background: #50fa7b;
     font-weight: bold;
     border: 1px solid #282A36;
-    cursor: pointer;
+    /*cursor: pointer;*/
 }
 
 #analytics-banner button#analytics-yes.active,
@@ -1268,7 +1257,7 @@ li > code:not([class]) {
     background: #ff5555;
     font-weight: bold;
     border: 1px solid #282A36;
-    cursor: pointer;
+    /*cursor: pointer;*/
 }
 
 #analytics-banner button#analytics-hide.active,
@@ -1276,7 +1265,7 @@ li > code:not([class]) {
     background: #f1fa8c;
     font-weight: bold;
     border: 1px solid #282A36;
-    cursor: pointer;
+    /*cursor: pointer;*/
 }
 
 a[href="#analytics-banner"] {
@@ -1291,7 +1280,7 @@ a[href="#analytics-banner"]:hover,
 a[href="#analytics-banner"]:active {
     background: #f1fa8c;
     border: 1px solid #282A36;
-    cursor: pointer;
+    /*cursor: pointer;*/
 }
 
 a[href="#analytics-banner"]:active {
