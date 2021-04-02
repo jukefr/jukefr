@@ -44,13 +44,17 @@
   </body>
   <script src="/js/cursory.js"></script>
   <script>
-    // order does matter somewhat so make this a chain not parallel for now
-    applyCursor("html", "/cursors/hover.ani", ":hover")
-            .then(() => applyCursor("p, blockquote, .muted, h1, h2, h3, h4, h5, h6, div > span, figcaption, li", "/cursors/text.ani", ":hover"))
-            .then(() => applyCursor("a, summary, button", "/cursors/alternate.ani", ":hover"))
-            .then(() => applyCursor("button", "/cursors/link.ani", ":active"))
-            .then(() => applyCursor("a", "/cursors/link.ani", ":active"))
-            .then(() => applyCursor("summary", "/cursors/link.ani", ":active"))
-            .then(() => applyCursor("html", "/cursors/active.ani", ":active")) // easter egg (that works like 10% of the time lol)
+    Promise.all([
+        getCursorCSS(["html"], "/cursors/hover.ani"),
+        getCursorCSS(["input", "time:active", "p:active", "p:active",
+            "blockquote:active", "h1:active", "h2:active", "h3:active",
+            "h4:active", "h5:active", "h6:active", "div > span:active", "figcaption:active",
+            "li:active", ".help-block:active"], "/cursors/text.ani"),
+        getCursorCSS(["a", "button", "summary"], "/cursors/alternate.ani"),
+        getCursorCSS(["button:active", "a:active", "summary:active"], "/cursors/link.ani"),
+        getCursorCSS(["html:active"], "/cursors/active.ani"),
+    ]).then(css => {
+        window.document.querySelector('head > style').innerHTML += css.flat().join('')
+    })
   </script>
 </html>
