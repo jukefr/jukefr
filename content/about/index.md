@@ -38,7 +38,7 @@ have a lovely day {{< rawhtml >}}<img id="site-icon" src="/milk.png" alt="site-i
 
 this website is built on {{<link "https://gohugo.io/" blank>}}hugo{{< /link >}} and themed with an old forked {{<link "https://after-dark.habd.as/" blank>}}afterdark{{< /link >}}
 
-the {{<link "https://github.com/jukefr/jukefr" blank>}}source{{< /link >}} is available on github and gets automatically {{<link "https://github.com/jukefr/jukefr/actions" blank>}}built and released{{< /link >}} over there
+the {{<link "https://github.com/jukefr/jukefr" blank>}}source{{< /link >}} is available on github, gets automatically built and deployed on ipfs and is available via fleek cdn on this domain.
 
 google analytics is available as an opt-in if you want to share data with me, by **default i do not load any external scripts or track anything**. the settings banner manages two cookies : 
 1. one to define whether to hide or show the banner
